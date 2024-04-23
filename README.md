@@ -1,1 +1,1 @@
-Exercises and notes for Advanced Functional Programming (AFP)
+Exercises and notes for Advanced Functional Programming (AFP).
