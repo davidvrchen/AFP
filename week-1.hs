@@ -50,6 +50,7 @@ mymapFix =
         [] -> []
         x : xs -> f x : m f xs
     )
+
 -- Lastly we look at the definition of ftake,
 -- i.e. composition of flip and take
 ftakeRec :: [x] -> Int -> [x]
@@ -60,9 +61,13 @@ ftakeRec (x : xs) n = ftakeRec xs (n -1) ++ [x]
 
 ftakeCata :: [x] -> Int -> [x]
 -- ^ ftake as catamorphism
-ftakeCata = foldr (\a as l -> case l of 
-                                      0 -> []
-                                      l -> as (l-1) ++ [a] ) (const []) 
+ftakeCata =
+  foldr
+    ( \a as l -> case l of
+        0 -> []
+        l -> as (l -1) ++ [a]
+    )
+    (const [])
 
 ftakeFix :: [x] -> Int -> [x]
 -- ^ ftake as fixed point solution of equation
