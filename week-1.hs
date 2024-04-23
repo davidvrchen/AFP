@@ -58,11 +58,11 @@ ftakeRec xs 0 = []
 ftakeRec [] n = []
 ftakeRec (x : xs) n = ftakeRec xs (n -1) ++ [x]
 
--- ftakeCata :: [x] -> Int -> [x]
--- -- ^ ftake as catamorphism
--- ftakeCata xs n = snd (foldr (\x (k, ys) -> case k of 
---                                         0 -> (0, [])
---                                         k -> (k-1, ys ++ [x]) ) (0, []) xs)
+ftakeCata :: [x] -> Int -> [x]
+-- ^ ftake as catamorphism
+ftakeCata = foldr (\a as l -> case l of 
+                                      0 -> []
+                                      l -> as (l-1) ++ [a] ) (const []) 
 
 ftakeFix :: [x] -> Int -> [x]
 -- ^ ftake as fixed point solution of equation
